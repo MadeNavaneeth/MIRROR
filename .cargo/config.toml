@@ -1,0 +1,13 @@
+[build]
+# rustc-wrapper = "sccache"
+
+[target.x86_64-apple-darwin]
+rustflags = ["-C", "link-arg=-fuse-ld=/usr/bin/ld"]
+
+[profile.dev]
+opt-level = 0
+debug = 0
+strip = "debuginfo"
+split-debuginfo = "unpacked"
+incremental = true
+codegen-units = 256

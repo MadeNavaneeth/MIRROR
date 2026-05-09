@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# pre-push hook — runs fmt, clippy, and tests before every push.
+# Install:  git config core.hooksPath .githooks
+# Skip:     git push --no-verify
+
+set -euo pipefail
+
+echo "==> pre-push: checking formatting..."
+cargo fmt --all -- --check || {
+    echo "FAIL: cargo fmt --all -- --check found unformatted code."
+    echo "Run 'cargo fmt' and try again."
+    exit 1
+}
+
+echo "==> pre-push: running clippy..."
+cargo clippy --all-targets -- -D clippy::correctness || {
+    echo "FAIL: clippy correctness gate reported issues."
+    exit 1
+}
+
+if [ "${ZEROCLAW_STRICT_LINT:-0}" = "1" ]; then
+    echo "==> pre-push: running strict clippy warnings gate (ZEROCLAW_STRICT_LINT=1)..."
+    cargo clippy --all-targets -- -D warnings || {
+        echo "FAIL: strict clippy warnings gate reported issues."
+        exit 1
+    }
+fi
+
+echo "==> pre-push: running tests..."
+cargo test || {
+    echo "FAIL: some tests did not pass."
+    exit 1
+}
+
+echo "==> pre-push: all checks passed."

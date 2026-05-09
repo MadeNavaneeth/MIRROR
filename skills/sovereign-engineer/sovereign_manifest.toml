@@ -1,0 +1,33 @@
+# Sovereign Engineer Application Manifest
+# This file orchestrates multiple skills into a unified autonomous agent.
+
+name = "Sovereign Engineer"
+version = "0.1.0"
+author = "Mirror Labs"
+description = "Autonomous Dev-Ops agent that handles discovery, triage, implementation, and reporting."
+
+[dependencies]
+github = "^1.0.0"
+linear = "^1.0.0"
+obsidian-direct = "^1.0.0"
+playwright-mcp = "^1.0.0"
+agentmail = "^1.1.1"
+elevenlabs-agents = "^1.0.0"
+auto-memory = "^1.0.0"
+
+[workflow.ingress]
+sources = ["github_issues", "linear_tasks", "email_inbox"]
+polling_interval_minutes = 15
+
+[workflow.triage]
+use_browser_for_repro = true
+memory_recall_depth = 5
+
+[workflow.implementation]
+strategy = "test_driven"
+allowed_git_ops = ["checkout", "commit", "push", "pull_request"]
+
+[workflow.egress]
+reports = ["email", "obsidian", "voice"]
+voice_enabled = true
+daily_brief_time = "18:00"
