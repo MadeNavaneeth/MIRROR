@@ -73,7 +73,7 @@ async-stream = "0.3"
 bytes = "1.0"
 
 # Memory / persistence
-rusqlite = { version = "0.38", features = ["bundled"] }
+rusqlite = { version = "0.39", features = ["bundled"] }
 chrono = { version = "0.4", default-features = false, features = ["clock", "std", "serde"] }
 cron = "0.12"
 
