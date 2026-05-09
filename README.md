@@ -19,9 +19,8 @@
 
 ## 📺 Demo
 
-https://github.com/MadeNavaneeth/MIRROR/assets/demo.mp4
-
-> **Note:** If the video doesn't play above, you can find the high-quality render here: [**demo.mp4**](demo.mp4)
+- **[Quick View (25MB demo.mp4)](demo.mp4)** — Optimized for fast loading.
+- **[High-Res Walkthrough (128MB MIRROR.mp4)](https://github.com/MadeNavaneeth/MIRROR/releases)** — Available in the **Releases** section for maximum quality.
 
 ---
 
