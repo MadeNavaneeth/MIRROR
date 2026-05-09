@@ -104,7 +104,7 @@ tower-http = { version = "0.6", default-features = false, features = ["limit", "
 http-body-util = "0.1"
 
 # OpenTelemetry — OTLP trace + metrics export
-opentelemetry = { version = "0.31", default-features = false, features = ["trace", "metrics"] }
+opentelemetry = { version = "0.32", default-features = false, features = ["trace", "metrics"] }
 opentelemetry_sdk = { version = "0.31", default-features = false, features = ["trace", "metrics"] }
 opentelemetry-otlp = { version = "0.31", default-features = false, features = ["trace", "metrics", "http-proto", "reqwest-client", "reqwest-rustls-webpki-roots"] }
 
