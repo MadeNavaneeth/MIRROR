@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="#-demo"><img src="https://img.shields.io/badge/Demo-Watch%20Now-e05c2a?style=for-the-badge" alt="Demo" /></a>
+  <a href="#-documentation--presentation"><img src="https://img.shields.io/badge/PDF-Presentation-blue?style=for-the-badge" alt="Presentation" /></a>
   <a href="#-detailed-setup"><img src="https://img.shields.io/badge/Setup-Fast-green?style=for-the-badge" alt="Setup" /></a>
   <a href="#-license"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /></a>
 </p>
@@ -19,52 +20,57 @@
 
 ## 📺 Demo
 
-- **[Quick View (25MB demo.mp4)](demo.mp4)** — Optimized for fast loading.
-- **[High-Res Walkthrough (128MB MIRROR.mp4)](https://github.com/MadeNavaneeth/MIRROR/releases)** — Available in the **Releases** section for maximum quality.
+- **[Quick View (25MB demo.mp4)](demo.mp4)** — Optimized for fast loading and GitHub preview.
+- **[High-Res Walkthrough (128MB MIRROR.mp4)](https://github.com/MadeNavaneeth/MIRROR/releases)** — Available in the **Releases** section for maximum production quality.
+
+---
+
+## 📄 Documentation & Presentation
+
+For a deep dive into the engineering choices, market analysis, and the vision behind Mirror, please refer to our official presentation:
+
+> [!IMPORTANT]
+> **[RV College of Engineering_TeamMirror.pdf](presentation.pdf)**
+> *Official submission document for Samsung PRISM / Clash of the Claws.*
 
 ---
 
 ## ✨ What is Mirror?
 
-Mirror is an ultra-fast, small, and fully autonomous AI assistant infrastructure designed for the next generation of sovereign computing. Whether running on a **$10 Linux board** or a high-end workstation, Mirror observes your daily reality and proactively recalibrates your schedule to match your intentions.
+Mirror is a fast, small, and fully autonomous AI assistant infrastructure designed for **Sovereign Intelligence**. It solves the "Intention-Action Gap" by being an active observer of your digital life—not just a passive chatbot.
 
-- 🏎️ **Ultra-Lightweight:** <5MB RAM footprint (99% smaller than alternatives).
-- ⚡ **Instant Boot:** <10ms startup time even on low-frequency edge cores.
-- 🔒 **Security First:** 6-digit pairing, workspace-scoped filesystem, and local-only data.
-- 🧠 **Sovereign Memory:** Built-in hybrid search (Vector + Keyword) directly in SQLite.
-
----
-
-## 🧩 The Problem: The "Intention-Action Gap"
-
-Most productivity tools are passive. You plan, but life happens.
-- **Fragmentation:** Data is locked in disparate apps.
-- **Drift:** Your behavior silently drifts from your career and health goals.
-- **Fragility:** If you miss one task, your entire plan for the week collapses.
-
-**Mirror fixes this** by being an autonomous observer that uses a **Deterministic Blackboard Pipeline (DLBP)** to heal your schedule in real-time.
+### Key Pillars:
+- 🏎️ **Ultra-Lightweight:** Runs on $10 hardware with <5MB RAM (99% smaller than Node.js alternatives).
+- ⚡ **Instant Boot:** <10ms startup time. Ready before you finish typing your first command.
+- 🔒 **Security First:** 6-digit pairing, workspace-scoped filesystem, and local-only data encryption.
+- 🧠 **Sovereign Memory:** Built-in hybrid search (Vector + Keyword) directly in SQLite—no external DB required.
 
 ---
 
-## 🏛️ Architecture: The 4-Agent Coordination
+## 🏛️ Architecture: The 4-Agent Deterministic Pipeline (DLBP)
 
-Mirror coordinates four specialized agents via a shared SQLite "Blackboard" state:
+Mirror utilizes a **Blackboard Architecture** where specialized agents coordinate through a shared, persistent state.
 
-1. **Journal Agent (📔 The Input):** Captures ambient data (speech/text) and classifies events into a sovereign ledger.
-2. **Planner Agent (📅 The Architect):** Proactively generates and recalibrates your schedule based on reality updates.
-3. **Career Agent (💼 The Auditor):** Compares daily "Proof-of-Work" against professional goals to flag skill gaps.
-4. **Health Agent (🩺 The Constraint):** Converts biometrics (sleep/readiness) into hard "Capability Constraints" for the Planner.
+| Agent | Responsibility | Dynamic Response |
+| :--- | :--- | :--- |
+| **Journal** 📔 | Captures reality via text/speech. | Indexes your day into a searchable SQLite ledger. |
+| **Planner** 📅 | The "Time Architect." | Recalibrates your schedule when you miss a task or drift from your goals. |
+| **Career** 💼 | The Skills Auditor. | Compares your output against career goals to flag skill regressions. |
+| **Health** 🩺 | The Capability Constraint. | Converts sleep/readiness data into hard limits for the Planner. |
+
+### Why Rust?
+We chose Rust to ensure memory safety and zero-cost abstractions, allowing Mirror to run on low-power devices (ARM, RISC-V, STM32) without sacrificing the complexity of autonomous reasoning.
 
 ---
 
 ## 🛠️ Detailed Setup
 
-### Prerequisites
-- **Rust:** `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-- **SQLite:** `libsqlite3-dev` (Linux) or standard install (macOS/Windows).
-- **API Key:** An OpenRouter or OpenAI API key for LLM processing.
+### 1. Prerequisites
+- **Rust Toolchain:** `rustup` installed.
+- **SQLite Development Files:** `libsqlite3-dev`.
+- **LLM Access:** An API key (OpenRouter, Anthropic, or OpenAI).
 
-### Installation
+### 2. Installation
 ```bash
 git clone https://github.com/MadeNavaneeth/MIRROR.git
 cd MIRROR
@@ -72,61 +78,38 @@ cargo build --release
 cargo install --path .
 ```
 
-### Onboarding
-Start the interactive 7-step wizard to configure your identity, providers, and security policy:
+### 3. Onboarding
 ```bash
+# Enter the interactive 7-step wizard
 mirror onboard --interactive
 ```
 
 ---
 
-## 💻 Usage Help
+## 💻 Usage & Help
 
-| Command | Description |
+| Command | Usage |
 | :--- | :--- |
-| `mirror agent` | Enter interactive chat mode with your Mirror. |
-| `mirror status` | Check the health of all agents and the background daemon. |
-| `mirror daemon` | Start the autonomous runtime (Heartbeat & Background Tasks). |
-| `mirror doctor` | Diagnose connection issues or configuration errors. |
-| `mirror service install` | Install Mirror as a background service (macOS/Linux). |
-
-### Example Proactive Interaction
-> **User:** "I slept 4 hours. Plan a low-intensity coding day."
->
-> **Mirror:** "Recognized Health Constraint. Recalibrating Planner... Deep work shifted to 2 PM. High-intensity meetings deferred to tomorrow."
+| `mirror agent` | Enter a conversation with your Mirror. |
+| `mirror status` | View the status of the Blackboard and all active agents. |
+| `mirror daemon` | Start the autonomous background runtime. |
+| `mirror doctor` | Run full system diagnostics and check provider health. |
+| `mirror service install` | Configure Mirror to run as a system daemon (macOS/Linux). |
 
 ---
 
 ## 🛡️ Security & Privacy
-- **Pairing Code:** Every new device must pair via a 6-digit code shown in the CLI.
-- **Workspace Scoping:** Agents are strictly forbidden from accessing paths outside the repository.
-- **Encrypted Secrets:** Your API keys are encrypted at rest using your local machine ID.
-
----
-
-## 🤖 AI Disclosure
-This project was developed in collaboration with **Antigravity**, an agentic AI assistant. AI was utilized for:
-- **Project Rebrand:** Systematic context-aware refactoring of 100+ files.
-- **Video Engineering:** Scripting the Remotion-based terminal simulation.
-- **Technical Writing:** Authoring the architecture and security roadmaps.
+- **6-Digit Pairing:** All new clients must prove physical access by entering a pairing code.
+- **Sandboxed Execution:** Tools are strictly scoped to the workspace to prevent path traversal.
+- **Encrypted Secrets:** API keys are encrypted at rest using a machine-specific hardware key.
 
 ---
 
 ## 📜 License
-
 This project is licensed under the **MIT License**.
-
-```text
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions...
-```
-See the [LICENSE](LICENSE) file for the full text.
 
 ---
 <p align="center">
-  <b>Mirror</b> — Reflect your best self. 🦀🪞
+  <b>Mirror</b> — Reflect your best self. 🦀🪞<br>
+  <i>Built with ❤️ by Team Mirror @ RV College of Engineering</i>
 </p>
