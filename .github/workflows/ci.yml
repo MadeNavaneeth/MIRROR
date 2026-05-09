@@ -128,7 +128,7 @@ jobs:
               with:
                   toolchain: 1.92
                   components: rustfmt, clippy
-            - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+            - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2
             - name: Run rustfmt
               run: cargo fmt --all -- --check
             - name: Run clippy
@@ -145,7 +145,7 @@ jobs:
             - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
               with:
                   toolchain: 1.92
-            - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+            - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2
             - name: Run tests
               run: cargo test --locked --verbose
 
@@ -161,7 +161,7 @@ jobs:
             - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
               with:
                   toolchain: 1.92
-            - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+            - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2
             - name: Build release binary
               run: cargo build --release --locked --verbose
 
@@ -198,7 +198,7 @@ jobs:
                   globs: ${{ needs.changes.outputs.docs_files }}
 
             - name: Link check (offline)
-              uses: lycheeverse/lychee-action@a8c4c7cb88f0c7386610c35eb25108e448569cb0 # v2
+              uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2
               with:
                   fail: true
                   args: >-
