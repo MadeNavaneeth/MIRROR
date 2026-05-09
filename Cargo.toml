@@ -15,7 +15,7 @@ categories = ["command-line-utilities", "api-bindings"]
 clap = { version = "4.5", features = ["derive"] }
 
 # Async runtime - feature-optimized for size
-tokio = { version = "1.42", default-features = false, features = ["rt-multi-thread", "macros", "time", "net", "io-util", "sync", "process", "io-std", "fs", "signal"] }
+tokio = { version = "1.52", default-features = false, features = ["rt-multi-thread", "macros", "time", "net", "io-util", "sync", "process", "io-std", "fs", "signal"] }
 
 # HTTP client - minimal features
 reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "blocking", "multipart", "stream"] }
@@ -91,9 +91,9 @@ futures-util = { version = "0.3", default-features = false, features = ["sink"] 
 futures = "0.3"
 hostname = "0.4.2"
 lettre = { version = "0.11.19", default-features = false, features = ["builder", "smtp-transport", "rustls-tls"] }
-mail-parser = "0.11.2"
+mail-parser = "0.11.3"
 rustls = "0.23"
-rustls-pki-types = "1.14.0"
+rustls-pki-types = "1.14.1"
 tokio-rustls = "0.26.4"
 webpki-roots = "1.0.6"
 
