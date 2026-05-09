@@ -1,0 +1,61 @@
+# Mirror Docker Compose Example
+# 
+# Quick start:
+#   1. Copy this file and set your API key
+#   2. Run: docker-compose up -d
+#   3. Access gateway at http://localhost:3000
+#
+# For more info: https://github.com/theonlyhennygod/mirror
+
+services:
+  mirror:
+    image: ghcr.io/theonlyhennygod/mirror:latest
+    # Or build locally:
+    # build: .
+    container_name: mirror
+    restart: unless-stopped
+    
+    environment:
+      # Required: Your LLM provider API key
+      - API_KEY=${API_KEY:-}
+      # Or use the prefixed version:
+      # - MIRROR_API_KEY=${MIRROR_API_KEY:-}
+      
+      # Optional: LLM provider (default: openrouter)
+      # Options: openrouter, openai, anthropic, ollama
+      - PROVIDER=${PROVIDER:-openrouter}
+      
+      # Allow public bind inside Docker (required for container networking)
+      - MIRROR_ALLOW_PUBLIC_BIND=true
+      
+      # Optional: Model override
+      # - MIRROR_MODEL=anthropic/claude-sonnet-4-20250514
+      
+    volumes:
+      # Persist workspace and config (must match WORKDIR/HOME in Dockerfile)
+      - mirror-data:/mirror-data
+      
+    ports:
+      # Gateway API port (override HOST_PORT if 3000 is taken)
+      - "${HOST_PORT:-3000}:3000"
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "mirror", "doctor"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  mirror-data:

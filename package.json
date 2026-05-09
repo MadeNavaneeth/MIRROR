@@ -1,0 +1,10 @@
+{
+  "name": "mirror-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix dashboard run dev",
+    "build": "npm --prefix dashboard run build",
+    "lint": "npm --prefix dashboard run lint",
+    "preview": "npm --prefix dashboard run preview"
+  }
+}

@@ -1,0 +1,23 @@
+/target
+/video/node_modules
+/dashboard/node_modules
+/node_modules
+firmware/*/target
+*.db
+*.db-journal
+.DS_Store
+.env
+.clawdhub
+.cursor
+.gemini
+
+# Big video files (GitHub limit)
+/MIRROR.mp4
+
+# Runtime / local workspace artifacts
+PROACTIVE_LOG.md
+daemon_state.json
+/cron/
+/memory/
+/logs/
+/out/
